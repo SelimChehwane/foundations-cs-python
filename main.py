@@ -49,6 +49,8 @@ def addMatrices():
 # print the result
 # the time complexity is N^2 because we have 3 nested loops that are dependent on user input
 
+
+
 def checKRotation():
     matrix1 = []
     matrix2 = []
@@ -92,6 +94,37 @@ def checKRotation():
                 result = True
 # we compare matrix1 and matrix2 at [i][j] to determine if it is a rotation
     print("It is", result, "that", matrix1, "is a rotation of", matrix2)
+
+
+def dicTReverse():
+    dict1 = {}
+    # we create a dictionary dict1
+    rows = eval(input("Please enter the number of rows you would like to add : "))
+    # user input the number of rows they want in dict1
+    for i in range(rows):
+        # we iterate over rows
+        values = input("Please enter a value : ")
+        key = i+1
+        dict1.update({key: values})
+    #     with each entered value, the key is auto-generated based on the index of rows at that value + 1
+    print(dict1)
+
+    inverted_dict = {}
+    # create an inverted dictdicT
+
+    for key, value in dict1.items():
+        # we iterate over the key, value pairs using .items()
+        if value in inverted_dict:
+            # if the value is duplicated in the inverted list
+            inverted_dict[value].append(key)
+        #     we append the key to the value list
+        else:
+            inverted_dict[value] = [key]
+        # we pass the values in dict1 as keys in the inverted dict
+        # we pass the keys in dict1 as values in the inverted dict
+
+    print(inverted_dict)
+
 
 
 
