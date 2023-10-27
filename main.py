@@ -126,9 +126,37 @@ def dicTReverse():
     print(inverted_dict)
 
 
+def lisTDict():
+    rows = eval(input("Please enter the number of profiles you would like to add : "))
+    # user input the amount of profiles they want to create
+    data = ["First Name", "Last Name", "ID", "Job Title", "Company"]
+    # organize data to be entered in  list
+    profiles = []
+    dict2 = {}
 
+    for i in range(rows):
+        # we iterate over the rows (number of profiles)
+        profile = []
+        # define empty profile list
+        for j in data:
+            # iterate over the data list.
+            profile_data = input("Please enter the {} of profile {}".format(j,i+1) + ": ")
+            # input the data
+            profile .append(profile_data)
+            # append the data to the empty profile list
+        profiles.append(profile)
+        # append the profile to the list of profiles
 
+    for i in range(len(profiles)):
+        # iterate over the range of the list of profiles' range
+        id = profiles[i][2]
+        # save the ID number in a variable
+        del profiles[i][2]
+        # delete the id data
+        dict2[id] = profiles[i]
+    #     create the dict
 
+    print(dict2)
 
 
 
