@@ -175,3 +175,56 @@ def isPalindrome(s):
         return False
 
 
+
+def mergeSort(lst):
+    if len(lst) > 1:
+        lst1 = lst[:len(lst)//2]
+        lst2 = lst[len(lst)//2:]
+        # we split the list into 2 list
+        mergeSort(lst1)
+        mergeSort(lst2)
+        # we call the function to split the lists
+        # in half recursively to get 1 element in per list
+        i = 0
+        j = 0
+        k = 0
+        while i < len(lst1) and j < len(lst2):
+            if lst1[i] < lst2[j]:
+                # if the first element of the first list
+                # is smaller than that of the second list
+                lst[k] = lst1[i]
+                # we place it at index 0 in the bigger list
+                i += 1
+            # we update the value i
+            else:
+                lst[k] = lst2[j]
+                # else we place the first element
+                # of the second list at index 0 in the bigger list
+                j += 1
+                # we update the value j
+            k += 1
+            # we update the value k
+
+        while i < len(lst1):
+            lst[k] = lst1[i]
+            i += 1
+            k += 1
+        # merge lst1 to lst
+
+        while j < len(lst2):
+            lst[k] = lst2[j]
+            j += 1
+            k += 1
+        # merge lst2 to lst
+
+def searchList(x,lst):
+    mergeSort(lst)
+    for i in range(len(lst)):
+        if lst[i] == x:
+            print(x, "is at index {}".format(i))
+    #         iterate over lst to find x and print its index
+    if x not in lst:
+        print(x, "was not found in the list")
+    # if x not found in the list
+
+
