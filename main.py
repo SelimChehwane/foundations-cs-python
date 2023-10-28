@@ -3,8 +3,8 @@
                                         ###############
 def displayYMenu():
     print("Menu:\n" + "\t1.Add Matrices\n"+"\t2.Check Rotation\n"+"\t3.Invert Dictionary\n"
-          +"\t 4.Covert Matrix to Dictionary \n"+"\t5.Check Palindrome\n"
-          +"\t 6.Search for an Element & Merge Sort \n"+"\t7.Exit\n")
+          +"\t4.Covert Matrix to Dictionary \n"+"\t5.Check Palindrome\n"
+          +"\t6.Search for an Element & Merge Sort \n"+"\t7.Exit\n")
 
 def addMatrices():
     matrix1 = []
@@ -94,7 +94,7 @@ def checKRotation():
                 result = True
 # we compare matrix1 and matrix2 at [i][j] to determine if it is a rotation
     print("It is", result, "that", matrix1, "is a rotation of", matrix2)
-
+# the time complexity is 0(N^2) because we have nested loops that are dependent on user input
 
 def dicTReverse():
     dict1 = {}
@@ -124,7 +124,7 @@ def dicTReverse():
         # we pass the keys in dict1 as values in the inverted dict
 
     print(inverted_dict)
-
+# the time complexity is 0(N^2) because we have nested loops that are dependent on user input
 
 def lisTDict():
     rows = eval(input("Please enter the number of profiles you would like to add : "))
@@ -155,6 +155,8 @@ def lisTDict():
         # delete the id data
         dict2[id] = profiles[i]
     #     create the dict
+    # the time complexity is 0(N) because the output is dependant on user input
+
 
     print(dict2)
 
@@ -166,13 +168,16 @@ def reverseString(s):
     else:
         return s
 #     base case to stop recursion
+# the time complexity is 0(N) because the output is dependent on user input
 
-def isPalindrome(s):
+def isPalindrome():
+    s = input("Enter a word to determine if it's a palindrome: ")
     if s == reverseString(s):
         # we compare the string to its reversed version
         return True
     else:
         return False
+    # the time complexity is 0(N) because the output is dependent on user input
 
 
 
@@ -216,9 +221,17 @@ def mergeSort(lst):
             j += 1
             k += 1
         # merge lst2 to lst
+# the time complexity is 0(nlog(n)) because it splits the list in half depending on user input
 
-def searchList(x,lst):
+def searchList():
+    lst = []
+    lst_len = int(input("Please enter the length of the list: "))
+    for i in range(lst_len):
+        lst.append(input("Enter element {} ".format(i+1) + "of the list"))
+
+    x = input("Enter element you want to find in the list: ")
     mergeSort(lst)
+
     for i in range(len(lst)):
         if lst[i] == x:
             print(x, "is at index {}".format(i))
@@ -226,5 +239,32 @@ def searchList(x,lst):
     if x not in lst:
         print(x, "was not found in the list")
     # if x not found in the list
+     # the time complexity is 0(N^2) because the nested loops are dependant on user input
 
 
+def assignment3():
+    name_user = input("Please enter your name: ")
+    print("Hello ", name_user, ", welcome to my third assignment!")
+
+    choice_user = 0
+    while choice_user != 7:
+        displayYMenu()
+        choice_user = eval(input("Please enter the exersice you would like to access: "))
+        if choice_user == 1:
+            addMatrices()
+        elif choice_user == 2:
+            checKRotation()
+        elif choice_user == 3:
+            dicTReverse()
+        elif choice_user == 4:
+            lisTDict()
+        elif choice_user == 5:
+            isPalindrome()
+        elif choice_user == 6:
+            searchList()
+        elif choice_user != 7:
+            print("Invalid choice")
+    print("You left assignment3, Goodbye.")
+
+
+assignment3()
