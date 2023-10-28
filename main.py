@@ -158,5 +158,20 @@ def lisTDict():
 
     print(dict2)
 
+def reverseString(s):
+    if len(s) != 1:
+        s1 = reverseString(s[1:])+s[0]
+        # we slice the string at each recursion and append the first character of the slice string
+        return s1
+    else:
+        return s
+#     base case to stop recursion
+
+def isPalindrome(s):
+    if s == reverseString(s):
+        # we compare the string to its reversed version
+        return True
+    else:
+        return False
 
 
