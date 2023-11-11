@@ -21,7 +21,7 @@ def openTab():
     while not url.startswith("https://"):
         print("Invalid URL. Please enter a URL starting with 'https://'.")
         url = input("Please enter the URL of the tab: ")
-    tab = {title: [url]}
+    tab = {title: url}
     tabs.append(tab)
 
 
@@ -54,3 +54,23 @@ def closeTab():
 # when the input is invalid it continually prompts the user for an input until it is valid
 # when the input is valid it removes the indexed element.
 # if the input is empty it removes the last element from the list
+
+def switchTab():
+    import requests
+    index = input("Please enter the index of the tab you would like to display: ")
+    if index.isdigit():
+        index = int(index)
+        if 0 <= index < len(tabs):
+            title, url = list(tabs[index].items())[0]
+            r = requests.get(url)
+            if r.status_code == 200:
+                print(r.text)
+            else:
+                print("An Error occurred!")
+        else:
+            print("Index out of range")
+    else:
+        print("Index Invalid")
+# the program prompt the user to input an index
+# we pass the index through verification
+# if it is verified we use it to access the specefic dictionary, tranform it into a tuble and unpack it to access the url
