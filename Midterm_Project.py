@@ -13,7 +13,7 @@ def displayMenu():
           "9.Exit")
 
 
-tabs = []
+tabs = [{"c":"https://www.youtube.com/watch?v=BzA7Lyw5zMk", "f":"https://www.youtube.com/watch?v=BzA7Lyw5zMk"}, {"e":"https://www.youtube.com/watch?v=BzA7Lyw5zMk"}]
 # We define the lists of tab outside to be able to update it consistently
 def openTab():
     title = input("Please enter the title of the tab: ")
@@ -21,7 +21,7 @@ def openTab():
     while not url.startswith("https://"):
         print("Invalid URL. Please enter a URL starting with 'https://'.")
         url = input("Please enter the URL of the tab: ")
-    tab={title: url}
+    tab = {title: url}
     tabs.append(tab)
     return tab
 
@@ -94,6 +94,11 @@ def openNestedtabs():
         tabs.remove(nested_tab)
         nested_list = tabs[index]
         nested_list.update(nested_tab)
+
+
+def diplayTabs():
+    for tab in tabs:
+        print(list(tab.keys()))
 
 
 
