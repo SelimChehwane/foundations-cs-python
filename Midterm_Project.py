@@ -13,7 +13,7 @@ def displayMenu():
           "9.Exit")
 
 
-tabs = [{"c":"https://www.youtube.com/watch?v=BzA7Lyw5zMk", "f":"https://www.youtube.com/watch?v=BzA7Lyw5zMk"}, {"e":"https://www.youtube.com/watch?v=BzA7Lyw5zMk"}]
+tabs = []
 # We define the lists of tab outside to be able to update it consistently
 def openTab():
     title = input("Please enter the title of the tab: ")
