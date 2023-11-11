@@ -21,9 +21,9 @@ def openTab():
     while not url.startswith("https://"):
         print("Invalid URL. Please enter a URL starting with 'https://'.")
         url = input("Please enter the URL of the tab: ")
-    tab = {title: url}
+    tab={title: url}
     tabs.append(tab)
-
+    return tab
 
 # the function prompts the user for a title and a URL
 # it then checks for the "https://" at the beginning of the URL using the string function ".startswith()"
@@ -82,3 +82,18 @@ def switchTab():
 # the program prompt the user to input an index and loops until the input is valid
 # if it is valid we use it to access the specific dictionary, transform it into a tuple and unpack it to access the url
 # if the input is empty the program displays the last open Tab
+
+def openNestedtabs():
+    index = input("Please enter the index of the tab you would like to nest in: ")
+    while not index.isdigit() or int(index) >= len(tabs):
+        print("Invalid index")
+        index = input("Please enter the index of the tab you would like to nest in: ")
+    index = int(index)
+    if 0 <= index < len(tabs):
+        nested_tab = openTab()
+        tabs.remove(nested_tab)
+        nested_list = tabs[index]
+        nested_list.update(nested_tab)
+
+
+
