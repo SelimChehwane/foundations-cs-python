@@ -31,4 +31,26 @@ def openTab():
 # it then creates the tab dictionary and appends it to the list of tabs
 
 
+def closeTab():
+    index = input("Please enter the index of the tab you would like to close: ")
 
+    while index != "":
+        if index.isdigit():
+            index = int(index)
+            if 0 <= index < len(tabs):
+                print("Removing", tabs[index])
+                tabs.remove(tabs[index])
+                break
+            else:
+                print("Index out of range.")
+        else:
+            print("Invalid Index.")
+        index = input("Please enter the index of the tab you would like to close: ")
+
+    if index == "":
+        print("Removing", tabs[-1])
+        tabs.remove(tabs[-1])
+# the function takes the inputted index and compares it to the conditions
+# when the input is invalid it continually prompts the user for an input until it is valid
+# when the input is valid it removes the indexed element.
+# if the input is empty it removes the last element from the list
