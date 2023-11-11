@@ -58,19 +58,27 @@ def closeTab():
 def switchTab():
     import requests
     index = input("Please enter the index of the tab you would like to display: ")
-    if index.isdigit():
-        index = int(index)
-        if 0 <= index < len(tabs):
-            title, url = list(tabs[index].items())[0]
-            r = requests.get(url)
-            if r.status_code == 200:
-                print(r.text)
+    while index != "":
+        if index.isdigit():
+            index = int(index)
+            if 0 <= index < len(tabs):
+                title, url = list(tabs[index].items())[0]
+                r = requests.get(url)
+                if r.status_code == 200:
+                    print(r.text)
+                else:
+                    print("An Error occurred!")
             else:
-                print("An Error occurred!")
+                print("Index out of range")
         else:
-            print("Index out of range")
-    else:
-        print("Index Invalid")
-# the program prompt the user to input an index
-# we pass the index through verification
-# if it is verified we use it to access the specefic dictionary, tranform it into a tuble and unpack it to access the url
+            print("Index Invalid")
+        index = input("Please enter the index of the tab you would like to display: ")
+    if index == "":
+        title, url = list(tabs[-1].items())[0]
+        r = requests.get(url)
+        print(r.text)
+
+
+# the program prompt the user to input an index and loops until the input is valid
+# if it is valid we use it to access the specific dictionary, transform it into a tuple and unpack it to access the url
+# if the input is empty the program displays the last open Tab
