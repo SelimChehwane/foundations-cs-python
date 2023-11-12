@@ -104,7 +104,8 @@ def openNestedtabs():
 def diplayTabs():
     for tab in tabs:
         print(list(tab.keys()))
-
+# the function iterates over how many individuals tab is in tabs and for each iteration prints the key of the tab
+# since the length of tabs depend on user input the time complexity is actually 0(n)
 
 
 
