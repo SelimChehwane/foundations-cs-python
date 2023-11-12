@@ -120,21 +120,25 @@ def diplayTabs():
 
 
 def export():
-    import os
-    from bs4 import BeautifulSoup
-    import requests
-    import json
-    file_name = input("Please provide the name of the file you would like to export: ")
-    path = input("Please enter the path you would like to use to save the open tabs in: ")
-    path = os.path.join(os.path.dirname(__file__), file_name)
-    with open(path, 'a') as file:
-        for i in range(len(tabs)):
-            title, url = list(tabs[i].items())[0]
-            r = requests.get(url)
-            if r.status_code == 200:
-                content = BeautifulSoup(r.text, 'html.parser')
-                json_data ={'titles': title, 'url': url, 'content': str(content)}
-                file.write(json.dumps(json_data))
+    if len(tabs) > 0:
+        import os
+        from bs4 import BeautifulSoup
+        import requests
+        import json
+        file_name = input("Please provide the name of the file you would like to export: ")
+        path = input("Please enter the path you would like to use to save the open tabs in: ")
+        path = os.path.join(os.path.dirname(__file__), file_name)
+        with open(path, 'a') as file:
+            for i in range(len(tabs)):
+                title, url = list(tabs[i].items())[0]
+                r = requests.get(url)
+                if r.status_code == 200:
+                    content = BeautifulSoup(r.text, 'html.parser')
+                    json_data ={'titles': title, 'url': url, 'content': str(content)}
+                    file.write(json.dumps(json_data))
+            print("You have successfully saved:", file_name, ", to:", path)
+    else:
+        print("No open Tabs to save.")
 # the program prompts the user for the name of the file and the path to use to create it
 # then using os we join the path and the name of the file
 # then the file is opened wih the parameter add
@@ -156,9 +160,8 @@ def importTabs():
         else:
             with open(path, 'r') as file:
                 imported_tabs = json.loads(file.read())
-                print(imported_tabs)
+                print("You are opening", imported_tabs)
                 tabs.extend(imported_tabs)
-                print(tabs)
                 break
 # the function asks for a path and validates it using os
 # if validated the program opens the file, converts the data from json to python objects
