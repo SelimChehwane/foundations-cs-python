@@ -109,7 +109,10 @@ def diplayTabs():
 
 
 
-
+tabs = [
+    {"c": "https://sefactory.webflow.io/#home", "f": "https://sefactory.webflow.io/#home"},
+    {"e": "https://sefactory.webflow.io/#home"}
+]
 def export():
     import os
     from bs4 import BeautifulSoup
@@ -135,17 +138,25 @@ def export():
 # it finally writes the content prefixed with the title and url of the tab into the file using json dumb to
 # turn the data to strings to be read
 # the time complexity is 0(n) because the function depends on user inputs of tabs that gets iterated over
-def import_tabs():
-    path = input("Please enter the path of the file you would like to open: ")
-    with open(path, 'r') as file:
-        imported_tabs = file.read()
-        print(imported_tabs)
-        tabs.append(imported_tabs)
-        print(tabs)
-# you import the string representation of a dictionary you'll have to fix it
+def importTabs():
+    import json
+    import os
+    while True:
+        path = input("Please enter the path of the file you would like to open: ")
+        path = path.strip('"')
+
+        if not os.path.isfile(path):
+            print("File not found. Please provide a valid file path.")
+        else:
+            with open(path, 'r') as file:
+                imported_tabs = json.loads(file.read())
+                print(imported_tabs)
+                tabs.extend(imported_tabs)
+                print(tabs)
+                break
 
 def clearTabs():
-    global tabs
+    global tabs8
     tabs = []
     return tabs
 
@@ -171,7 +182,7 @@ def main():
         elif choice == 7:
             export()
         elif choice == 8:
-            import_tabs()
+            importTabs()
         elif choice != 9:
             print("Invalid choice")
     print("You left the project, Goodbye.")
