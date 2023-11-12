@@ -156,10 +156,14 @@ def importTabs():
 # then the list tabs is extended with the tabs found in the file
 # the time complexity is 0(n) because the loop and the size of the file depend on the user's input
 
+
 def clearTabs():
     global tabs
-    tabs = []
-    return tabs
+    if len(tabs) > 0:
+        tabs = []
+        print("You have cleared all open Tabs.")
+    else:
+        print("No more open Tabs.")
 # the function calls on the global variable tabs and then assign it to a cleared list
 # effectively clearing them
 # the time complexity is 0(1) because no mater the original tabs it is always cleared using this function
