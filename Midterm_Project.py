@@ -190,6 +190,9 @@ def main():
         elif choice != 9:
             print("Invalid choice")
     print("You left the project, Goodbye.")
-
+# the function prompts for a choice and based on that calls a function
+# once the function terminates the programs prompts again for a choice
+# this loops continue until 9 is chosen and the main function terminates
+# the time complexity is 0(n) because the choice and amount of looping of the function depends on user input
 
 main()
