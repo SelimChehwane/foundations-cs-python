@@ -137,3 +137,30 @@ def clearTabs():
     tabs = []
     return tabs
 
+def main():
+    choice = 0
+    while choice != 9:
+        displayMenu()
+        choice = eval(input("Please enter the exersice you would like to access: "))
+        if choice == 1:
+            openTab()
+        elif choice == 2:
+            closeTab()
+        elif choice == 3:
+            switchTab()
+        elif choice == 4:
+            diplayTabs()
+        elif choice == 5:
+            openNestedtabs()
+        elif choice == 6:
+            clearTabs()
+        elif choice == 7:
+            export()
+        elif choice == 8:
+            import_tabs()
+        elif choice != 9:
+            print("Invalid choice")
+    print("You left the project, Goodbye.")
+
+
+main()
