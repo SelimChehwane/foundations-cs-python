@@ -109,10 +109,7 @@ def diplayTabs():
 
 
 
-tabs = [
-    {"c": "https://sefactory.webflow.io/#home", "f": "https://sefactory.webflow.io/#home"},
-    {"e": "https://sefactory.webflow.io/#home"}
-]
+
 def export():
     import os
     from bs4 import BeautifulSoup
@@ -154,7 +151,10 @@ def importTabs():
                 tabs.extend(imported_tabs)
                 print(tabs)
                 break
-
+# the function asks for a path and validates it using os
+# if validated the program opens the file, converts the data from json to python objects
+# then the list tabs is extended with the tabs found in the file
+# the time complexity is 0(n) because the loop and the size of the file depend on the user's input
 def clearTabs():
     global tabs8
     tabs = []
