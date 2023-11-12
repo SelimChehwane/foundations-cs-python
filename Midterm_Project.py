@@ -124,9 +124,17 @@ def export():
             r = requests.get(url)
             if r.status_code == 200:
                 content = BeautifulSoup(r.text, 'html.parser')
-                json_data ={'titles': title, 'url':url,'content': str(content)}
+                json_data ={'titles': title, 'url': url, 'content': str(content)}
                 file.write(json.dumps(json_data))
-
+# the program prompts the user for the name of the file and the path to use to create it
+# then using os we join the path and the name of the file
+# then the file is opened wih the parameter add
+# then it iterates the length of tabs and at each iteration the tab is itemized then unpacked into a tuple
+# it used the tuple url to request the data from it.
+# it then parses through the requested text using baeutifulsoop
+# it finally writes the content prefixed with the title and url of the tab into the file using json dumb to
+# turn the data to strings to be read
+# the time complexity is 0(n) because the function depends on user inputs of tabs that gets iterated over
 def import_tabs():
     path = input("Please enter the path of the file you would like to open: ")
     with open(path, 'r') as file:
