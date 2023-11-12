@@ -1,4 +1,5 @@
-
+tabs = []
+# We define the lists of tab outside to be able to update it consistently
 def displayMenu():
     print("-------------------------------------------")
     print("Please select an option to start:\n "
@@ -11,9 +12,8 @@ def displayMenu():
           "7.Save Tabs\n "
           "8.Import tabs\n "
           "9.Exit")
+# Time complexity is 0(1) because no statement in displayMenu() is dependant on an inputted variable
 
-
-tabs = []
 # We define the lists of tab outside to be able to update it consistently
 def openTab():
     title = input("Please enter the title of the tab: ")
