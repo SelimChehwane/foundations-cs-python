@@ -1,7 +1,6 @@
 
 def displayMenu():
-    print("-------------------------Hello there! Welcome to my Midterm Project-------------------------")
-    print()
+    print("-------------------------------------------")
     print("Please select an option to start:\n "
           "1.Open Tab\n "
           "2.Close Tab\n "
@@ -138,6 +137,8 @@ def clearTabs():
     return tabs
 
 def main():
+    print("-------------------------Hello there! Welcome to my Midterm Project-------------------------")
+    print()
     choice = 0
     while choice != 9:
         displayMenu()
