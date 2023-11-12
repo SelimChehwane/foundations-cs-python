@@ -58,6 +58,7 @@ def closeTab():
 
 def switchTab():
     import requests
+    from bs4 import BeautifulSoup
     index = input("Please enter the index of the tab you would like to display: ")
     while index != "":
         if index.isdigit():
@@ -66,7 +67,7 @@ def switchTab():
                 title, url = list(tabs[index].items())[0]
                 r = requests.get(url)
                 if r.status_code == 200:
-                    print(r.text)
+                    print(BeautifulSoup(r.text, 'html'))
                 else:
                     print("An Error occurred!")
             else:
@@ -77,7 +78,7 @@ def switchTab():
     if index == "":
         title, url = list(tabs[-1].items())[0]
         r = requests.get(url)
-        print(r.text)
+        print(BeautifulSoup(r.text, 'html.parser'))
         return r.text
 
 # the program prompt the user to input an index and loops until the input is valid
@@ -101,23 +102,29 @@ def diplayTabs():
     for tab in tabs:
         print(list(tab.keys()))
 
+
+
+
+
 def export():
     import os
+    from bs4 import BeautifulSoup
     import requests
+    import json
+    file_name = input("Please provide the name of the file you would like to export: ")
     path = input("Please enter the path you would like to use to save the open tabs in: ")
-    open_tabs = tabs
-    for i in range(len(open_tabs)):
-        title, url = list(tabs[i].items())[0]
-        r = requests.get(url)
-        if r.status_code == 200:
-            print(r.text)
-        with open(path, 'w') as file:
-            file.write(r.text)
+    path = os.path.join(os.path.dirname(__file__), file_name)
+    with open(path, 'a') as file:
+        for i in range(len(tabs)):
+            title, url = list(tabs[i].items())[0]
+            r = requests.get(url)
+            if r.status_code == 200:
+                content = BeautifulSoup(r.text, 'html.parser')
+                json_data = str(content)
+                file.write(json.dumps(json_data))
 
 
 
 
 
-tabs = [{"c":"https://www.youtube.com/watch?v=BzA7Lyw5zMk", "f":"https://www.youtube.com/watch?v=BzA7Lyw5zMk"}, {"e":"https://www.youtube.com/watch?v=BzA7Lyw5zMk"}]
 
-export()
