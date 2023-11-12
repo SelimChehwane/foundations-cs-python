@@ -29,7 +29,8 @@ def openTab():
 # it then checks for the "https://" at the beginning of the URL using the string function ".startswith()"
 # if the URL doesn't start with "https://" it enters a loop that doesn't stop until the URL inputted is valid
 # it then creates the tab dictionary and appends it to the list of tabs
-
+# the time complexity is 0(n) because the while loop depends on the user inputting correctly, or they will be
+# prompted to re-input as many times as it takes for a valid input
 
 def closeTab():
     index = input("Please enter the index of the tab you would like to close: ")
