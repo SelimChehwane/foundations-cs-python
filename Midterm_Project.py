@@ -55,7 +55,7 @@ def closeTab():
 # when the input is invalid it continually prompts the user for an input until it is valid
 # when the input is valid it removes the indexed element.
 # if the input is empty it removes the last element from the list
-
+# the time complexity is 0(n) because the program keeps looping until a valid input is entered
 def switchTab():
     import requests
     from bs4 import BeautifulSoup
