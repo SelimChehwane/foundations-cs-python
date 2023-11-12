@@ -33,53 +33,59 @@ def openTab():
 # prompted to re-input as many times as it takes for a valid input
 
 def closeTab():
-    index = input("Please enter the index of the tab you would like to close: ")
-
-    while index != "":
-        if index.isdigit():
-            index = int(index)
-            if 0 <= index < len(tabs):
-                print("Removing", tabs[index])
-                tabs.remove(tabs[index])
-                break
-            else:
-                print("Index out of range.")
-        else:
-            print("Invalid Index.")
+    if len(tabs) > 0:
         index = input("Please enter the index of the tab you would like to close: ")
 
-    if index == "":
-        print("Removing", tabs[-1])
-        tabs.remove(tabs[-1])
+        while index != "":
+            if index.isdigit():
+                index = int(index)
+                if 0 <= index < len(tabs):
+                    print("Removing", tabs[index])
+                    tabs.remove(tabs[index])
+                    break
+                else:
+                    print("Index out of range.")
+            else:
+                print("Invalid Index.")
+            index = input("Please enter the index of the tab you would like to close: ")
+
+        if index == "":
+            print("Removing", tabs[-1])
+            tabs.remove(tabs[-1])
+    else:
+        print("No open tabs to close.")
 # the function takes the inputted index and compares it to the conditions
 # when the input is invalid it continually prompts the user for an input until it is valid
 # when the input is valid it removes the indexed element.
 # if the input is empty it removes the last element from the list
 # the time complexity is 0(n) because the program keeps looping until a valid input is entered
 def switchTab():
-    import requests
-    from bs4 import BeautifulSoup
-    index = input("Please enter the index of the tab you would like to display: ")
-    while index != "":
-        if index.isdigit():
-            index = int(index)
-            if 0 <= index < len(tabs):
-                title, url = list(tabs[index].items())[0]
-                r = requests.get(url)
-                if r.status_code == 200:
-                    print(BeautifulSoup(r.text, 'html.parser'))
-                else:
-                    print("An Error occurred!")
-            else:
-                print("Index out of range")
-        else:
-            print("Index Invalid")
+    if len(tabs) > 0:
+        import requests
+        from bs4 import BeautifulSoup
         index = input("Please enter the index of the tab you would like to display: ")
-    if index == "":
-        title, url = list(tabs[-1].items())[0]
-        r = requests.get(url)
-        print(BeautifulSoup(r.text, 'html.parser'))
-        return r.text
+        while index != "":
+            if index.isdigit():
+                index = int(index)
+                if 0 <= index < len(tabs):
+                    title, url = list(tabs[index].items())[0]
+                    r = requests.get(url)
+                    if r.status_code == 200:
+                        print(BeautifulSoup(r.text, 'html.parser'))
+                    else:
+                        print("An Error occurred!")
+                else:
+                    print("Index out of range")
+            else:
+                print("Index Invalid")
+            index = input("Please enter the index of the tab you would like to display: ")
+        if index == "":
+            title, url = list(tabs[-1].items())[0]
+            r = requests.get(url)
+            print(BeautifulSoup(r.text, 'html.parser'))
+            return r.text
+    else:
+        print("No open tabs to switch to.")
 
 # the program prompt the user to input an index and loops until the input is valid
 # if it is valid we use it to access the specific dictionary, transform it into a tuple and unpack it to access the url
