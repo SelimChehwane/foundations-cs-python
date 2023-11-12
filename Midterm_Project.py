@@ -155,10 +155,14 @@ def importTabs():
 # if validated the program opens the file, converts the data from json to python objects
 # then the list tabs is extended with the tabs found in the file
 # the time complexity is 0(n) because the loop and the size of the file depend on the user's input
+
 def clearTabs():
-    global tabs8
+    global tabs
     tabs = []
     return tabs
+# the function calls on the global variable tabs and then assign it to a cleared list
+# effectively clearing them
+# the time complexity is 0(1) because no mater the original tabs it is always cleared using this function
 
 def main():
     print("-------------------------Hello there! Welcome to my Midterm Project-------------------------")
