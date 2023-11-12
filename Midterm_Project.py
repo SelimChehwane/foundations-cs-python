@@ -170,27 +170,30 @@ def main():
     choice = 0
     while choice != 9:
         displayMenu()
-        choice = eval(input("Please enter the exersice you would like to access: "))
-        if choice == 1:
-            openTab()
-        elif choice == 2:
-            closeTab()
-        elif choice == 3:
-            switchTab()
-        elif choice == 4:
-            diplayTabs()
-        elif choice == 5:
-            openNestedtabs()
-        elif choice == 6:
-            clearTabs()
-        elif choice == 7:
-            export()
-        elif choice == 8:
-            importTabs()
-        elif choice != 9:
-            print("Invalid choice")
+        choice = input("Please enter the exersice you would like to access: ")
+        if choice.isdigit():
+            choice = int(choice)
+            if choice == 1:
+                openTab()
+            elif choice == 2:
+                closeTab()
+            elif choice == 3:
+                switchTab()
+            elif choice == 4:
+                diplayTabs()
+            elif choice == 5:
+                openNestedtabs()
+            elif choice == 6:
+                clearTabs()
+            elif choice == 7:
+                export()
+            elif choice == 8:
+                importTabs()
+            elif choice != 9:
+                print("Invalid choice")
     print("You left the project, Goodbye.")
 # the function prompts for a choice and based on that calls a function
+# it keeps prompting for a choice until a valid input is entered
 # once the function terminates the programs prompts again for a choice
 # this loops continue until 9 is chosen and the main function terminates
 # the time complexity is 0(n) because the choice and amount of looping of the function depends on user input
