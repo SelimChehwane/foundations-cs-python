@@ -102,8 +102,11 @@ def openNestedtabs():
 # the time complexity is 0(n) because it will keep looping until the user's input is valid
 
 def diplayTabs():
-    for tab in tabs:
-        print(list(tab.keys()))
+    if len(tabs) > 0:
+        for tab in tabs:
+            print(list(tab.keys()))
+    else:
+        print("No open Tabs to display")
 # the function iterates over how many individuals tab is in tabs and for each iteration prints the key of the tab
 # since the length of tabs depend on user input the time complexity is actually 0(n)
 
