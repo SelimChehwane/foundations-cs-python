@@ -130,3 +130,10 @@ def import_tabs():
         print(imported_tabs)
         tabs.append(imported_tabs)
         print(tabs)
+# you import the string representation of a dictionary you'll have to fix it
+
+def clearTabs():
+    global tabs
+    tabs = []
+    return tabs
+
