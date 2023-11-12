@@ -67,7 +67,7 @@ def switchTab():
                 title, url = list(tabs[index].items())[0]
                 r = requests.get(url)
                 if r.status_code == 200:
-                    print(BeautifulSoup(r.text, 'html'))
+                    print(BeautifulSoup(r.text, 'html.parser'))
                 else:
                     print("An Error occurred!")
             else:
@@ -120,11 +120,13 @@ def export():
             r = requests.get(url)
             if r.status_code == 200:
                 content = BeautifulSoup(r.text, 'html.parser')
-                json_data = str(content)
+                json_data ={'titles': title, 'url':url,'content': str(content)}
                 file.write(json.dumps(json_data))
 
-
-
-
-
-
+def import_tabs():
+    path = input("Please enter the path of the file you would like to open: ")
+    with open(path, 'r') as file:
+        imported_tabs = file.read()
+        print(imported_tabs)
+        tabs.append(imported_tabs)
+        print(tabs)
