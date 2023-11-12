@@ -84,7 +84,7 @@ def switchTab():
 # the program prompt the user to input an index and loops until the input is valid
 # if it is valid we use it to access the specific dictionary, transform it into a tuple and unpack it to access the url
 # if the input is empty the program displays the last open Tab
-
+# the time complexity is 0(n) because the while loop will keep looping until a valid input is entered
 def openNestedtabs():
     index = input("Please enter the index of the tab you would like to nest in: ")
     while not index.isdigit() or int(index) >= len(tabs):
