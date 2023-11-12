@@ -1,3 +1,4 @@
+
 def displayMenu():
     print("-------------------------Hello there! Welcome to my Midterm Project-------------------------")
     print()
@@ -77,7 +78,7 @@ def switchTab():
         title, url = list(tabs[-1].items())[0]
         r = requests.get(url)
         print(r.text)
-
+        return r.text
 
 # the program prompt the user to input an index and loops until the input is valid
 # if it is valid we use it to access the specific dictionary, transform it into a tuple and unpack it to access the url
@@ -100,5 +101,23 @@ def diplayTabs():
     for tab in tabs:
         print(list(tab.keys()))
 
+def export():
+    import os
+    import requests
+    path = input("Please enter the path you would like to use to save the open tabs in: ")
+    open_tabs = tabs
+    for i in range(len(open_tabs)):
+        title, url = list(tabs[i].items())[0]
+        r = requests.get(url)
+        if r.status_code == 200:
+            print(r.text)
+        with open(path, 'w') as file:
+            file.write(r.text)
 
 
+
+
+
+tabs = [{"c":"https://www.youtube.com/watch?v=BzA7Lyw5zMk", "f":"https://www.youtube.com/watch?v=BzA7Lyw5zMk"}, {"e":"https://www.youtube.com/watch?v=BzA7Lyw5zMk"}]
+
+export()
