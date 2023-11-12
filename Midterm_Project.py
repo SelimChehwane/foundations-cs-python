@@ -23,6 +23,7 @@ def openTab():
         url = input("Please enter the URL of the tab: ")
     tab = {title: url}
     tabs.append(tab)
+    print("You have opened", title, ":", url)
     return tab
 
 # the function prompts the user for a title and a URL
@@ -102,6 +103,7 @@ def openNestedtabs():
         tabs.remove(nested_tab)
         nested_list = tabs[index]
         nested_list.update(nested_tab)
+        print("You have opened", nested_tab, "in your chosen tab.")
 # the program prompts for an index which it validates. if valid we call opentab() to create a tab
 # the program then removes the addition of the nested tab to tabs because of how openTab is coded.
 # then it updates the tabs list at the entered index with the openTab/nested tab
