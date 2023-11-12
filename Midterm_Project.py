@@ -96,7 +96,10 @@ def openNestedtabs():
         tabs.remove(nested_tab)
         nested_list = tabs[index]
         nested_list.update(nested_tab)
-
+# the program prompts for an index which it validates. if valid we call opentab() to create a tab
+# the program then removes the addition of the nested tab to tabs because of how openTab is coded.
+# then it updates the tabs list at the entered index with the openTab/nested tab
+# the time complexity is 0(n) because it will keep looping until the user's input is valid
 
 def diplayTabs():
     for tab in tabs:
