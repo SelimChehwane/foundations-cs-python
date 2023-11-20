@@ -79,7 +79,8 @@ class Stack:
     def pop(self):
         value = self.head.value
         self.head = self.head.next
-
+        self.size -= 1
+        return value
 class Queue:
     def __init__(self):
         self.head = None
@@ -100,6 +101,11 @@ class Queue:
     def dequeue(self):
         value = self.head.value
         self.head = self.head.next
+        self.size -= 1
+        return value
+
+
+
 
 
 
