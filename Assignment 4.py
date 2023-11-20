@@ -105,7 +105,17 @@ class Queue:
         return value
 
 
-
+def isPalindrome(string):
+    stack = Stack()
+    queue = Queue()
+    for char in string:
+        stack.push(char)
+        queue.enqueue(char)
+    while True:
+        char = queue.dequeue()
+        rev_char = stack.pop()
+        if char != rev_char:
+            return False
 
 
 
