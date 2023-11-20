@@ -100,7 +100,12 @@ def isPalindrome(string):
         if char != rev_char:
             return False
 
-
+class Student:
+    def __init__ (self, name, grade1, grade2, good_attitude):
+        self.name = name
+        self.grad1 = grade1
+        self.grad2 = grade2
+        self.good_attitude = good_attitude  
 
 
 
