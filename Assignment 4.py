@@ -21,6 +21,53 @@ def nodeMenu():
 
 class Node:
     def __init__(self, value):
-        self.info = value
+        self.value = value
         self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def addNode(self, value):
+        value = int(input("Please enter the value of the new Node: "))
+        new_node = Node(value)
+        if not self.head:
+            self.head = new_node
+        else:
+            current_node = self.head
+            while current_node.next:
+                current_node = current_node.next
+            current_node.next = new_node
+
+    def displayNodes(self):
+        current = self.head
+        if current.next is None:
+            print("No Nodes to Display! Try Adding a Node first.")
+        while current != None:
+            print(current.value, end=" ")
+            current = current.next
+
+    def deleteNode(self):
+        value = int(input("Please enter the value of the Nodes you would like to delete: "))
+        current = self.head
+        previous = None
+        if current.next is None:
+            print("No Nodes to Delete!")
+            return
+        while current:
+            if current.value == value:
+                if current == self.head:
+                    self.head = current.next
+                else:
+                    previous.next = current.next
+                    current = current.next
+            else:
+                previous = current
+            current = current.next
+
+
+
+
+
+
 
