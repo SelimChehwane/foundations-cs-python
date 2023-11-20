@@ -65,6 +65,42 @@ class LinkedList:
                 previous = current
             current = current.next
 
+class Stack:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+
+    def push(self, value):
+        node = Node(value)
+        node.next = self.head
+        self.head = node
+        self.size += 1
+
+    def pop(self):
+        value = self.head.value
+        self.head = self.head.next
+
+class Queue:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.size = 0
+
+    def enqueue(self, value):
+        node = Node(value)
+        if self.size == 0:
+            self.head = node
+            self.tail = node
+            self.size += 1
+        else:
+            self.tail.next = node
+            self.tail = node
+            self.size += 1
+
+    def dequeue(self):
+        value = self.head.value
+        self.head = self.head.next
+
 
 
 
