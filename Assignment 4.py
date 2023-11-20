@@ -19,3 +19,8 @@ def nodeMenu():
           "\n D.Return to Main Menu")
 
 
+class Node:
+    def __init__(self, value):
+        self.info = value
+        self.next = None
+
