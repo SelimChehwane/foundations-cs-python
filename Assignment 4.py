@@ -74,31 +74,18 @@ class Stack:
         self.value.append(value)
 
     def pop(self):
-        self.value.pop()
+        return self.value.pop()
 
 
 class Queue:
     def __init__(self):
-        self.head = None
-        self.tail = None
-        self.size = 0
+        self.value = []
 
     def enqueue(self, value):
-        node = Node(value)
-        if self.size == 0:
-            self.head = node
-            self.tail = node
-            self.size += 1
-        else:
-            self.tail.next = node
-            self.tail = node
-            self.size += 1
+        self.value.append(value)
 
     def dequeue(self):
-        value = self.head.value
-        self.head = self.head.next
-        self.size -= 1
-        return value
+        return self.value.pop(0)
 
 
 def isPalindrome(string):
