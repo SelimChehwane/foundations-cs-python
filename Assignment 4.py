@@ -108,12 +108,10 @@ class Student:
         self.final_grade= final_grade
         self.good_attitude = good_attitude
 
-
 class PriorityQueue:
     def __init__(self):
         self.head = None
         self.size = 0
-
 
     def addStudent(self, student):
         import random
@@ -123,38 +121,67 @@ class PriorityQueue:
             self.size += 1
         else:
             current = self.head
-            while current.next and node.value.good_attitude:
+
+            if node.value.good_attitude:
                 if node.value.final_grade > current.value.final_grade:
-                    node.next = current
+                    node.next = self.head
                     self.head = node
                     self.size += 1
                     return
                 elif node.value.final_grade == current.value.final_grade:
                     if node.value.midterm_grade > current.value.midterm_grade:
-                        node.next = current.next
-                        current.next = node
+                        node.next = self.head
+                        self.head = node
                         self.size += 1
                         return
                     elif node.value.midterm_grade == current.value.midterm_grade:
                         if random.randint(0, 1) == 0:
                             node.next = self.head
                             self.head = node
-                            self.size +=1
-                        else:
-                            current.next = self.head
-                            self.head = current
                             self.size += 1
-                        return
-                current = current.next
+                            return
 
-            if not current.next and not node.value.good_attitude:
+                while current.next and current.next.value.good_attitude:
+                    current = current.next
+
+                node.next = current.next
                 current.next = node
                 self.size += 1
             else:
-                while current.next_node:
+                while current.next:
                     current = current.next
+
+                node.next = current.next
                 current.next = node
-                self.size +=1
+                self.size += 1
+
+    def displayStudents(self):
+        current = self.head
+        while current:
+            print(current.value.name, end=" ")
+            current = current.next
+
+def createStudent():
+    name = input("Please enter the name of the student: ")
+    midterm_grade = input("Please enter their midterm grade: ")
+    final_grade = input("Please enter their final grade: ")
+    good_attitude = eval(input("Please enter a boolean to describe their good attitude: "))
+    student = Student(name, midterm_grade, final_grade, good_attitude)
+    return student
+
+
+pq = PriorityQueue()
+student = createStudent()
+pq.addStudent(student)
+student = createStudent()
+pq.addStudent(student)
+student = createStudent()
+pq.addStudent(student)
+student = createStudent()
+pq.addStudent(student)
+pq.displayStudents()
+
+
 
 
 
