@@ -34,10 +34,10 @@ class LinkedList:
         if not self.head:
             self.head = new_node
         else:
-            current_node = self.head
-            while current_node.next:
-                current_node = current_node.next
-            current_node.next = new_node
+            current= self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
 
     def displayNodes(self):
         current = self.head
@@ -100,12 +100,64 @@ def isPalindrome(string):
         if char != rev_char:
             return False
 
+
 class Student:
-    def __init__ (self, name, grade1, grade2, good_attitude):
+    def __init__ (self, name, midterm_grade, final_grade, good_attitude):
         self.name = name
-        self.grad1 = grade1
-        self.grad2 = grade2
-        self.good_attitude = good_attitude  
+        self.midterm_grade = midterm_grade
+        self.final_grade= final_grade
+        self.good_attitude = good_attitude
+
+
+class PriorityQueue:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+
+
+    def addStudent(self, student):
+        import random
+        node = Node(student)
+        if self.size == 0:
+            self.head = node
+            self.size += 1
+        else:
+            current = self.head
+            while current.next and node.value.good_attitude:
+                if node.value.final_grade > current.value.final_grade:
+                    node.next = current
+                    self.head = node
+                    self.size += 1
+                    return
+                elif node.value.final_grade == current.value.final_grade:
+                    if node.value.midterm_grade > current.value.midterm_grade:
+                        node.next = current.next
+                        current.next = node
+                        self.size += 1
+                        return
+                    elif node.value.midterm_grade == current.value.midterm_grade:
+                        if random.randint(0, 1) == 0:
+                            node.next = self.head
+                            self.head = node
+                            self.size +=1
+                        else:
+                            current.next = self.head
+                            self.head = current
+                            self.size += 1
+                        return
+                current = current.next
+
+            if not current.next and not node.value.good_attitude:
+                current.next = node
+                self.size += 1
+            else:
+                while current.next_node:
+                    current = current.next
+                current.next = node
+                self.size +=1
+
+
+
 
 
 
