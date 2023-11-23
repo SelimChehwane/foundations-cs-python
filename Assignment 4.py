@@ -113,8 +113,9 @@ class PriorityQueue:
         self.head = None
         self.size = 0
 
-    def addStudent(self, student):
+    def addStudent(self):
         import random
+        student = createStudent()
         node = Node(student)
         if self.size == 0:
             self.head = node
@@ -155,11 +156,21 @@ class PriorityQueue:
                 current.next = node
                 self.size += 1
 
-    def displayStudents(self):
-        current = self.head
-        while current:
-            print(current.value.name, end=" ")
-            current = current.next
+    def interView(self):
+        if self.size == 0:
+            print("No student to interview. Try adding a student first.")
+        elif self.size == 1:
+            print("You should interview:", self.head.value.name)
+            self.head = None
+            self.size -= 1
+        else:
+            print("You should interview:", self.head.value.name)
+            current = self.head
+            self.head = self.head.next
+            current.next = None
+            self.size -= 1
+
+
 
 def createStudent():
     name = input("Please enter the name of the student: ")
@@ -171,15 +182,13 @@ def createStudent():
 
 
 pq = PriorityQueue()
-student = createStudent()
-pq.addStudent(student)
-student = createStudent()
-pq.addStudent(student)
-student = createStudent()
-pq.addStudent(student)
-student = createStudent()
-pq.addStudent(student)
-pq.displayStudents()
+
+pq.addStudent()
+pq.addStudent()
+pq.addStudent()
+pq.addStudent()
+pq.interView()
+pq.interView()
 
 
 
