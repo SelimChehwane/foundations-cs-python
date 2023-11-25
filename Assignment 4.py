@@ -228,7 +228,7 @@ def evaluate(string):
             return 0
 # we assign a precedent to the sets
 
-    def apply_operator():
+    def applyOperator():
         op = operators.pop()
         operand2 = operands.pop()
         operand1 = operands.pop()
@@ -239,7 +239,7 @@ def evaluate(string):
     operands = Stack()
 
     for char in string:
-        if char.isnum():
+        if char.isnumeric():
             operands.push(char)
 # we take a string and iterate over it
         elif char in operators_lst or char in parentheses:
@@ -249,24 +249,24 @@ def evaluate(string):
             # If it's a closing parenthesis, apply operators until an open parenthesis is encountered
             elif char == ")":
                 while operators.value[-1] != "(":
-                    apply_operator()
+                    applyOperator()
                 operators.pop()
 # If it's a closing parenthesis, apply operators until an open parenthesis is encountered
 
             else:
                 while operators.value and operators.value[-1] in operators_lst \
                         and precedence(operators.value[-1]) >= precedence(char):
-                    apply_operator()
+                    applyOperator()
                 operators.push(char)
 # we apply operators based on precedence before adding the current operator
 
     while operators.value:
-        apply_operator()
+        applyOperator()
 # we apply remaining operators
 
     return operands.pop()
 # return the result
-
+# this function implements the shunting Yard algorithm to make sure the order of operators is correct.
 class Graph:
     def __init__(self,vertices):
         self.vertices = vertices
@@ -323,20 +323,6 @@ class Graph:
 # the program takes a degree as n as print the vertices that are equal or more than n
 
 
-g = Graph(4)
-g.addEdge(0,1)
-g.addEdge(0,2)
-g.addEdge(1,3)
-g.addEdge(2,3)
-g.addVertex()
-g.addEdge(3,4)
-
-g.displayGraph(2)
-
-
-g.addVertex()
-g.addEdge(0,4)
-g.displayGraph(2)
 
 
 
