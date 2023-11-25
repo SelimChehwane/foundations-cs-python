@@ -225,9 +225,76 @@ def evaluate(string):
     return operands.pop()
 
 
-string = "((3+6)-7)*(4/2)"
-result = evaluate(string)
-print("Result of evaluation:", result)
+class Graph:
+    def __init__(self,vertices):
+        self.vertices = vertices
+        self.adj_matrix = [[0]*vertices for _ in range(vertices)]
+
+    def addVertex(self):
+        self.vertices += 1
+        for row in self.adj_matrix:
+            row.append(0)
+        self.adj_matrix.append([0] * self.vertices)
+        print("You added", self.vertices-1," as a vertex\n")
+
+
+    def removeVertex(self, vertex):
+        if vertex < 0 or vertex >= self.vertices:
+            print("Invalid vertex", vertex, "\n")
+        else:
+            del self.adj_matrix[vertex]
+            for row in self.adj_matrix:
+                del row[vertex]
+            self.vertices -= 1
+            print("You removed vertex", vertex, "\n")
+
+    def removeEdge(self,v1,v2):
+        if ((v1 < 0 or v1 >= self.vertices) and (v2 < 0 or v2 >= self.vertices)):
+            print("Invalid vertices", v1, "and", v2, "\n")
+        else:
+            self.adj_matrix[v1][v2] = 0
+            self.adj_matrix[v2][v1] = 0
+            print("You removed edge between vertices", v1, "and", v2, "\n")
+
+    def addEdge(self, v1, v2):
+        if 0 <= v1 < self.vertices and 0 <= v2 < self.vertices:
+            self.adj_matrix[v1][v2] = 1
+            self.adj_matrix[v2][v1] = 1
+            print("You added an edge between vertices", v1, "and", v2, "\n")
+        elif ((v1 < 0 or v1 >= self.vertices)
+              and (v2 < 0 or v2 >= self.vertices)):
+            print("Invalid vertices", v1, "and", v2, "\n")
+        elif v1 < 0 or v1 >= self.vertices:
+            print("Invalid vertex", v1, "\n")
+        else:
+            print("Invalid vertex", v2, "\n")
+
+    def displayGraph(self, n):
+        if len(self.adj_matrix) == 0:
+            print("Graph is empty!\n")
+            return
+        for i in range(len(self.adj_matrix)):
+            degree = sum(self.adj_matrix[i])
+            if degree >= n:
+                print(i, end=" ")
+        print("\n")
+
+
+
+g = Graph(4)
+g.addEdge(0,1)
+g.addEdge(0,2)
+g.addEdge(1,3)
+g.addEdge(2,3)
+g.addVertex()
+g.addEdge(3,4)
+
+g.displayGraph(2)
+
+
+g.addVertex()
+g.addEdge(0,4)
+g.displayGraph(2)
 
 
 
