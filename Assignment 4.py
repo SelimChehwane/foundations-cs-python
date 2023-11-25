@@ -23,6 +23,8 @@ class Node:
     def __init__(self, value):
         self.value = value
         self.next = None
+# we create class node
+
 
 class LinkedList:
     def __init__(self):
@@ -33,19 +35,24 @@ class LinkedList:
         new_node = Node(value)
         if not self.head:
             self.head = new_node
+# we check if the linked list is empty.
+# if it is empty is sets the new created node as head
         else:
-            current= self.head
+            current = self.head
             while current.next:
                 current = current.next
             current.next = new_node
+# if it's not empty we traverse the linked list until current.next is none then we set the new node as current.next
 
     def displayNodes(self):
         current = self.head
         if current.next is None:
             print("No Nodes to Display! Try Adding a Node first.")
-        while current != None:
+# if current.next is none then there are no nodes to display
+        while current.next is not None:
             print(current.value, end=" ")
             current = current.next
+# if it is not empty we loop while printing the value updating current.next every time
 
     def deleteNode(self):
         value = int(input("Please enter the value of the Nodes you would like to delete: "))
@@ -54,16 +61,19 @@ class LinkedList:
         if current.next is None:
             print("No Nodes to Delete!")
             return
-        while current:
+        while current is not None:
             if current.value == value:
                 if current == self.head:
                     self.head = current.next
+# if the node to be delete is the head we update the head to skip it
                 else:
                     previous.next = current.next
                     current = current.next
+# if the node to be deleted is not the head we use the pointer previous and assign it to skip the node
             else:
                 previous = current
             current = current.next
+# if the value we input is not in the node we update the current node to check the next one
 
 
 class Stack:
@@ -75,6 +85,7 @@ class Stack:
 
     def pop(self):
         return self.value.pop()
+# we create a class stack
 
 
 class Queue:
@@ -87,18 +98,25 @@ class Queue:
     def dequeue(self):
         return self.value.pop(0)
 
+# we create a class queue
+
 
 def isPalindrome(string):
     stack = Stack()
     queue = Queue()
+# we create a stack and queue
     for char in string:
         stack.push(char)
         queue.enqueue(char)
+# we place each character in both the queue and stack
     while True:
         char = queue.dequeue()
         rev_char = stack.pop()
         if char != rev_char:
             return False
+# we compare the dequeued and popped char
+# using the fifo and lifo rules we get a comparison between the reverse of the word and the word in the right way
+# this way we can tell is a word is a palindrome
 
 
 class Student:
