@@ -26,7 +26,7 @@ class Node:
 # we create class node
 
 
-class Linkedlist:
+class LinkedList:
     def __init__(self):
 
         self.head = None
@@ -212,11 +212,12 @@ def createStudent():
     good_attitude = eval(input("Please enter a boolean to describe their good attitude: "))
     student = Student(name, midterm_grade, final_grade, good_attitude)
     return student
-
+# we take user input and create the student object
 
 def evaluate(string):
     operators_lst = {"+", "-", "*", "/"}
     parentheses = {"(", ")"}
+# we create 2 set of operators and parentheses
 
     def precedence(op):
         if op in {"+", "-"}:
@@ -225,6 +226,7 @@ def evaluate(string):
             return 2
         else:
             return 0
+# we assign a precedent to the sets
 
     def apply_operator():
         op = operators.pop()
@@ -232,31 +234,38 @@ def evaluate(string):
         operand1 = operands.pop()
         result = int(eval(operand1 + op + operand2))
         operands.push(str(result))
-
+# it pops the operands and operator the evaluates them
     operators = Stack()
     operands = Stack()
 
     for char in string:
-        if char.isalnum():
+        if char.isnum():
             operands.push(char)
+# we take a string and iterate over it
         elif char in operators_lst or char in parentheses:
             if char == "(":
                 operators.push(char)
+# if the char is a number it is added to the stack operands
+            # If it's a closing parenthesis, apply operators until an open parenthesis is encountered
             elif char == ")":
                 while operators.value[-1] != "(":
                     apply_operator()
                 operators.pop()
+# If it's a closing parenthesis, apply operators until an open parenthesis is encountered
+
             else:
                 while operators.value and operators.value[-1] in operators_lst \
                         and precedence(operators.value[-1]) >= precedence(char):
                     apply_operator()
                 operators.push(char)
+# we apply operators based on precedence before adding the current operator
 
     while operators.value:
         apply_operator()
+# we apply remaining operators
 
     return operands.pop()
-
+# return the result
 
 class Graph:
     def __init__(self,vertices):
@@ -280,7 +289,7 @@ class Graph:
                 del row[vertex]
             self.vertices -= 1
             print("You removed vertex", vertex, "\n")
-
+# we take an input and use it to remove the vertex and its row in the adjacency matrix
     def removeEdge(self,v1,v2):
         if ((v1 < 0 or v1 >= self.vertices) and (v2 < 0 or v2 >= self.vertices)):
             print("Invalid vertices", v1, "and", v2, "\n")
@@ -288,7 +297,7 @@ class Graph:
             self.adj_matrix[v1][v2] = 0
             self.adj_matrix[v2][v1] = 0
             print("You removed edge between vertices", v1, "and", v2, "\n")
-
+# basically removing the edge but using 2 inputted vertex
     def addEdge(self, v1, v2):
         if 0 <= v1 < self.vertices and 0 <= v2 < self.vertices:
             self.adj_matrix[v1][v2] = 1
@@ -311,7 +320,7 @@ class Graph:
             if degree >= n:
                 print(i, end=" ")
         print("\n")
-
+# the program takes a degree as n as print the vertices that are equal or more than n
 
 
 g = Graph(4)
