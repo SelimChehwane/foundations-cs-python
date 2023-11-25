@@ -181,14 +181,60 @@ def createStudent():
     return student
 
 
-pq = PriorityQueue()
+def evaluate(string):
+    operators_lst = {"+", "-", "*", "/"}
+    parentheses = {"(", ")"}
 
-pq.addStudent()
-pq.addStudent()
-pq.addStudent()
-pq.addStudent()
-pq.interView()
-pq.interView()
+    def precedence(op):
+        if op in {"+", "-"}:
+            return 1
+        elif op in {"*", "/"}:
+            return 2
+        else:
+            return 0
+
+    def apply_operator():
+        op = operators.pop()
+        operand2 = operands.pop()
+        operand1 = operands.pop()
+        result = int(eval(operand1 + op + operand2))
+        operands.push(str(result))
+
+    operators = Stack()
+    operands = Stack()
+
+    for char in string:
+        if char.isalnum():
+            operands.push(char)
+        elif char in operators_lst or char in parentheses:
+            if char == "(":
+                operators.push(char)
+            elif char == ")":
+                while operators.value[-1] != "(":
+                    apply_operator()
+                operators.pop()
+            else:
+                while operators.value and operators.value[-1] in operators_lst \
+                        and precedence(operators.value[-1]) >= precedence(char):
+                    apply_operator()
+                operators.push(char)
+
+    while operators.value:
+        apply_operator()
+
+    return operands.pop()
+
+
+string = "((3+6)-7)*(4/2)"
+result = evaluate(string)
+print("Result of evaluation:", result)
+
+
+
+
+
+
+
 
 
 
