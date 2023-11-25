@@ -26,8 +26,9 @@ class Node:
 # we create class node
 
 
-class LinkedList:
+class Linkedlist:
     def __init__(self):
+
         self.head = None
 
     def addNode(self, value):
@@ -125,47 +126,59 @@ class Student:
         self.midterm_grade = midterm_grade
         self.final_grade= final_grade
         self.good_attitude = good_attitude
+# we create a class student that takes multiples parameters
+
 
 class PriorityQueue:
     def __init__(self):
         self.head = None
         self.size = 0
+# we create a priority queue
 
     def addStudent(self):
         import random
         student = createStudent()
+# we create an object student
         node = Node(student)
+# we put student as value in a node
         if self.size == 0:
             self.head = node
             self.size += 1
+# if the pq is empty the node becomes the head
         else:
             current = self.head
+# we create a pointer current
 
             if node.value.good_attitude:
+# if the student has a good attitude we place it in the front queue
                 if node.value.final_grade > current.value.final_grade:
                     node.next = self.head
                     self.head = node
                     self.size += 1
                     return
+# if the final grade of the new node is bigger than that of  current node we add the node in front of that node
+
                 elif node.value.final_grade == current.value.final_grade:
                     if node.value.midterm_grade > current.value.midterm_grade:
                         node.next = self.head
                         self.head = node
                         self.size += 1
                         return
+# if they are equal we compare the midterm grade and place
                     elif node.value.midterm_grade == current.value.midterm_grade:
                         if random.randint(0, 1) == 0:
                             node.next = self.head
                             self.head = node
                             self.size += 1
                             return
-
+# we use the random module to randomly generate 0 or 1 to place students if they have the same grade and good attitude
                 while current.next and current.next.value.good_attitude:
                     current = current.next
-
+# we iterate over the node to find one without a good attitude
                 node.next = current.next
                 current.next = node
                 self.size += 1
+# students with bad attitude are placed last regardless of grade
             else:
                 while current.next:
                     current = current.next
@@ -173,6 +186,8 @@ class PriorityQueue:
                 node.next = current.next
                 current.next = node
                 self.size += 1
+# this loop makes sure students with good attitudes and lower grades than existing student are placed correctly
+
 
     def interView(self):
         if self.size == 0:
@@ -187,7 +202,7 @@ class PriorityQueue:
             self.head = self.head.next
             current.next = None
             self.size -= 1
-
+# this function uses the fifo rule to pop the student to be interviewed
 
 
 def createStudent():
