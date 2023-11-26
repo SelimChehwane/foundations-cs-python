@@ -223,16 +223,29 @@ class PriorityQueue:
 
 
 def createStudent():
-    name = input("Please enter the name of the student: ")
-    midterm_grade = input("Please enter their midterm grade: ")
-    final_grade = input("Please enter their final grade: ")
-    good_attitude = eval(input("Please enter a boolean to describe their good attitude: "))
+    name = input("\nPlease enter the name of the student: ")
+    midterm_grade = input("\nPlease enter their midterm grade: ")
+    while not midterm_grade.isnumeric() or not (0 <= int(midterm_grade) <= 100):
+        print("Invalid grade. It needs to be between 0 and 100")
+        midterm_grade = input("\nPlease enter their midterm grade: ")
+
+    final_grade = input("\nPlease enter their final grade: ")
+    while not final_grade.isnumeric() or not (0 <= int(final_grade) <= 100):
+        print("Invalid grade. It needs to be between 0 and 100")
+        final_grade = input("\nPlease enter their final grade: ")
+
+    good_attitude = input("\nPlease enter a boolean to describe their good attitude: ")
+    # Keep looping until a valid boolean is entered
+    while not (good_attitude == 'True' or good_attitude == 'False'):
+        print("Invalid. Please enter 'True' or 'False'.")
+        good_attitude = input("\nPlease enter 'True' or 'False' to describe their good attitude: ")
+
     student = Student(name, midterm_grade, final_grade, good_attitude)
     return student
 # we take user input and create the student object
 
 def evaluate():
-    string = input("Please enter the infix expression you want to evaluate: ")
+    string = input("\nPlease enter the infix expression you want to evaluate: ")
     operators_lst = {"+", "-", "*", "/"}
     parentheses = {"(", ")"}
 # we create 2 set of operators and parentheses
@@ -295,7 +308,7 @@ class Graph:
         for row in self.adj_matrix:
             row.append(0)
         self.adj_matrix.append([0] * self.vertices)
-        print("You added", self.vertices-1," as a vertex\n")
+        print("\nYou added a new vertex")
 
 
     def removeVertex(self, vertex):
@@ -342,9 +355,8 @@ class Graph:
 
 
 def graphMenu():
-    print("Welcome to the Graph Menu: "
-          "\n A. Add Vertex"
-          "\n B.Display Edge"
+    print("\n A.Add Vertex"
+          "\n B.Add Edge"
           "\n C.Remove Vertex"
           "\n D.Remove Edge"
           "\n E.Display vertices with a degree of X or more"
@@ -353,35 +365,36 @@ def graphMenu():
 
 
 def graphMain():
+    print("\nWelcome to the Graph Menu: ")
     choice = ""
     graph = Graph(0)
     while choice != "F":
-        pqMenu()
-        choice = input("Please enter the option you would like to access: ")
+        graphMenu()
+        choice = input("\nPlease enter the option you would like to access: ")
         if choice == "A":
             graph.addVertex()
         elif choice == "B":
-            v1 = input("Please enter the first vertex you would like to add an edge to: ")
-            v2 = input("Please enter the second vertex you would like to add an edge to: ")
+            v1 = int(input("\nPlease enter the first vertex you would like to add an edge to: "))
+            v2 = int(input("\nPlease enter the second vertex you would like to add an edge to: "))
             graph.addEdge(v1,v2)
         elif choice == "C":
-            v = input("Please enter the vertex you would like to remove: ")
+            v = int(input("\nPlease enter the vertex you would like to remove: "))
             graph.removeVertex(v)
         elif choice == "D":
-            v1 = input("Please enter the first vertex you would like to remove the edge of: ")
-            v2 = input("Please enter the second vertex you would like to remove the edge of: ")
+            v1 = int(input("\nPlease enter the first vertex you would like to remove the edge of: "))
+            v2 = int(input("\nPlease enter the second vertex you would like to remove the edge of: "))
             graph.removeEdge(v1,v2)
         elif choice == "E":
-            n = input("Please enter the degree of the vertices you would like displayed: ")
+            n = int(input("\nPlease enter the degree of the vertices you would like displayed: "))
             graph.displayGraph(n)
         elif choice != "F":
-            print("Invalid option.")
-    print("You're returning to the Main Menu")
+            print("\nInvalid option.")
+    print("\nYou're returning to the Main Menu\n")
 
 def pqMenu():
 
-    print("Welcome to the Priority Queue Menu: "
-          "\n A. Add Student"
+    print("\nWelcome to the Priority Queue Menu:\n "
+          "\n A.Add Student"
           "\n B.Interview Student"
           "\n C.Return to Main Menu")
 def pqMain():
@@ -389,14 +402,14 @@ def pqMain():
     pq = PriorityQueue()
     while choice != "C":
         pqMenu()
-        choice = input("Please enter the option you would like to access: ")
+        choice = input("\nPlease enter the option you would like to access: ")
         if choice == "A":
             pq.addStudent()
         elif choice == "B":
             pq.interView()
         elif choice != "C":
-            print("Invalid option.")
-    print("You're returning to the Main Menu")
+            print("\nInvalid option.")
+    print("\nYou're returning to the Main Menu\n")
 
 
 
@@ -421,9 +434,10 @@ def main():
             elif choice == 3:
                 pqMain()
             elif choice == 4:
-                evaluate()
+                print("\n", evaluate())
+                print("\nReturning to Main Menu\n")
             elif choice == 5:
-                graphMenu()
+                graphMain()
             elif choice != 6:
                 print("\nInvalid choice")
     print("\nYou left the project, Goodbye.")
