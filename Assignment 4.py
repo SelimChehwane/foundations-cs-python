@@ -50,6 +50,7 @@ class LinkedList:
                 self.head = new_node
     # we check if the linked list is empty.
     # if it is empty is sets the new created node as head
+
             else:
                 current = self.head
                 while current.next:
@@ -59,6 +60,7 @@ class LinkedList:
         else:
             print("\nInvalid value.")
     # if it's not empty we traverse the linked list until current.next is none then we set the new node as current.next
+    # O(n) is the time complexity where n is the number of nodes entered by the user
 
     def displayNodes(self):
         current = self.head
@@ -69,6 +71,7 @@ class LinkedList:
             print(current.value, end=" ")
             current = current.next
 # if it is not empty we loop while printing the value updating current.next every time
+# O(n) is the time complexity where n is the number of nodes entered by the user
 
     def deleteNode(self, value):
         if self.head is None:
@@ -91,16 +94,19 @@ class LinkedList:
                 previous = current
             current = current.next
 # after validating we iterate through the list removing all instances of the value in the linked list
+# O(n) is the time complexity where n is the number of nodes entered by the user
 class Stack:
     def __init__(self):
         self.value = []
 
     def push(self, value):
         self.value.append(value)
+ #O(1) is the time complexity because the function is only appending once
 
     def pop(self):
         return self.value.pop()
 # we create a class stack
+ #O(1) is the time complexity because the function is only pops once
 
 
 class Queue:
@@ -109,9 +115,11 @@ class Queue:
 
     def enqueue(self, value):
         self.value.append(value)
+    # O(1) is the time complexity because the function is only appending once
 
     def dequeue(self):
         return self.value.pop(0)
+ #O(1) is the time complexity because the function is only pops once
 
 # we create a class queue
 
@@ -135,6 +143,7 @@ def isPalindrome(string):
 # we compare the dequeued and popped char
 # using the fifo and lifo rules we get a comparison between the reverse of the word and the word in the right way
 # this way we can tell is a word is a palindrome
+# O(n) is the time complexity where n being the length of the string
 
 
 class Student:
@@ -204,7 +213,7 @@ class PriorityQueue:
                 current.next = node
                 self.size += 1
 # this loop makes sure students with good attitudes and lower grades than existing student are placed correctly
-
+# O(n) is the time complexity where n being the number of nodes in the queue
 
     def interView(self):
         if self.size == 0:
@@ -220,6 +229,8 @@ class PriorityQueue:
             current.next = None
             self.size -= 1
 # this function uses the fifo rule to pop the student to be interviewed
+# O(1) is the time complexity because we pop once to get the student to interview
+
 
 
 def createStudent():
@@ -298,6 +309,8 @@ def evaluate():
     return operands.pop()
 # return the result
 # this function implements the shunting Yard algorithm to make sure the order of operators is correct.
+# O(n) is the time complexity where n is the length of the infix statement
+
 class Graph:
     def __init__(self,vertices):
         self.vertices = vertices
@@ -310,6 +323,7 @@ class Graph:
         self.adj_matrix.append([0] * self.vertices)
         print("\nYou added a new vertex")
 
+# O(n) is the time complexity where n is the number of vertices
 
     def removeVertex(self, vertex):
         if vertex < 0 or vertex >= self.vertices:
@@ -321,6 +335,8 @@ class Graph:
             self.vertices -= 1
             print("You removed vertex", vertex, "\n")
 # we take an input and use it to remove the vertex and its row in the adjacency matrix
+# O(n) is the time complexity where n is the number of vertices
+
     def removeEdge(self,v1,v2):
         if ((v1 < 0 or v1 >= self.vertices) and (v2 < 0 or v2 >= self.vertices)):
             print("Invalid vertices", v1, "and", v2, "\n")
@@ -329,6 +345,8 @@ class Graph:
             self.adj_matrix[v2][v1] = 0
             print("You removed edge between vertices", v1, "and", v2, "\n")
 # basically removing the edge but using 2 inputted vertex
+# O(1) is the time complexity because we remove 1 edge at a time.
+
     def addEdge(self, v1, v2):
         if 0 <= v1 < self.vertices and 0 <= v2 < self.vertices:
             self.adj_matrix[v1][v2] = 1
@@ -341,7 +359,7 @@ class Graph:
             print("Invalid vertex", v1, "\n")
         else:
             print("Invalid vertex", v2, "\n")
-
+# O(1) is the time complexity because we add 1 edge at a time.
     def displayGraph(self, n):
         if len(self.adj_matrix) == 0:
             print("Graph is empty!\n")
@@ -352,7 +370,7 @@ class Graph:
                 print(i, end=" ")
         print("\n")
 # the program takes a degree as n as print the vertices that are equal or more than n
-
+# O(n^2) is the time complexity because we iterate over each row in the adjacency matrix where n is the number of vertices
 
 def graphMenu():
     print("\n A.Add Vertex"
