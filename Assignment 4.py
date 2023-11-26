@@ -32,7 +32,6 @@ class LinkedList:
         self.head = None
 
     def addNode(self, value):
-        value = int(input("Please enter the value of the new Node: "))
         new_node = Node(value)
         if not self.head:
             self.head = new_node
@@ -321,6 +320,17 @@ class Graph:
                 print(i, end=" ")
         print("\n")
 # the program takes a degree as n as print the vertices that are equal or more than n
+
+
+def graphMenu():
+    print("Welcome to the Graph Menu: "
+          "\n A. Add Vertex"
+          "\n B.Display Edge"
+          "\n C.Remove Vertex"
+          "\n D.Remove Edge"
+          "\n E.Display vertices with a degree of X or more"
+          "\n F.Return to Main Menu")
+
 
 
 
