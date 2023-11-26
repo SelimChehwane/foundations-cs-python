@@ -1,10 +1,5 @@
 def displayMenu():
-    user_name = input("Please enter your name: ")
-    print()
-    print("Hello", user_name,", welcome to my fourth assignment!")
-    print()
-    print("Please select an option to start: " 
-          "\n 1.Singly Linked list"
+    print(" 1.Singly Linked list"
           "\n 2.Check if Palindrome"
           "\n 3.Priority Queue"
           "\n 4.Evaluate and Infix Expression"
@@ -12,11 +7,28 @@ def displayMenu():
           "\n 6.Exit")
 
 def nodeMenu():
-    print("Welcome to the Nodes Menu: "
-          "\n A. Add Nodes"
+    print("\n A. Add Nodes"
           "\n B.Display Nodes"
           "\n C.Search for & Delete Node"
-          "\n D.Return to Main Menu")
+          "\n D.Return to Main Menu\n")
+def nodeMain():
+    print("\nWelcome to the Nodes Menu: ")
+    choice = ""
+    LL = LinkedList()
+    while choice != "D":
+        nodeMenu()
+        choice = input("Please enter the option you would like to access: ")
+        if choice == "A":
+            v = input("\nPlease enter the numerical value you would like to add: ")
+            LL.addNode(v)
+        elif choice == "B":
+            LL.displayNodes()
+        elif choice == "C":
+            value = input("\nPlease enter the value of the Nodes you would like to delete: ")
+            LL.deleteNode(value)
+        elif choice != "D":
+            print("Invalid option.")
+    print("\nYou're returning to the Main Menu\n")
 
 
 class Node:
@@ -33,49 +45,52 @@ class LinkedList:
 
     def addNode(self, value):
         new_node = Node(value)
-        if not self.head:
-            self.head = new_node
-# we check if the linked list is empty.
-# if it is empty is sets the new created node as head
+        if new_node.value.isnumeric():
+            if not self.head:
+                self.head = new_node
+    # we check if the linked list is empty.
+    # if it is empty is sets the new created node as head
+            else:
+                current = self.head
+                while current.next:
+                    current = current.next
+                current.next = new_node
+            print("\nYou have added ", value, "to the LinkedList.")
         else:
-            current = self.head
-            while current.next:
-                current = current.next
-            current.next = new_node
-# if it's not empty we traverse the linked list until current.next is none then we set the new node as current.next
+            print("\nInvalid value.")
+    # if it's not empty we traverse the linked list until current.next is none then we set the new node as current.next
 
     def displayNodes(self):
         current = self.head
-        if current.next is None:
-            print("No Nodes to Display! Try Adding a Node first.")
+        if current is None:
+            print("\nNo Nodes to Display! Try Adding a Node first.")
 # if current.next is none then there are no nodes to display
-        while current.next is not None:
+        while current is not None:
             print(current.value, end=" ")
             current = current.next
 # if it is not empty we loop while printing the value updating current.next every time
 
-    def deleteNode(self):
-        value = int(input("Please enter the value of the Nodes you would like to delete: "))
+    def deleteNode(self, value):
+        if self.head is None:
+            print("\nThe LinkedList is empty. No Nodes to Delete!")
+            return
+        while not value.isdigit():
+            print("\nInvalid input. Please enter an integer.")
+            value = input("\nPlease enter the value of the Nodes you would like to delete: ")
+        # we validate the input to be a digit
         current = self.head
         previous = None
-        if current.next is None:
-            print("No Nodes to Delete!")
-            return
+
         while current is not None:
             if current.value == value:
                 if current == self.head:
                     self.head = current.next
-# if the node to be delete is the head we update the head to skip it
                 else:
                     previous.next = current.next
-                    current = current.next
-# if the node to be deleted is not the head we use the pointer previous and assign it to skip the node
             else:
                 previous = current
             current = current.next
-# if the value we input is not in the node we update the current node to check the next one
-
-
+# after validating we iterate through the list removing all instances of the value in the linked list
 class Stack:
     def __init__(self):
         self.value = []
@@ -213,7 +228,8 @@ def createStudent():
     return student
 # we take user input and create the student object
 
-def evaluate(string):
+def evaluate():
+    string = input("Please enter the infix expression you want to evaluate: ")
     operators_lst = {"+", "-", "*", "/"}
     parentheses = {"(", ")"}
 # we create 2 set of operators and parentheses
@@ -330,13 +346,89 @@ def graphMenu():
           "\n D.Remove Edge"
           "\n E.Display vertices with a degree of X or more"
           "\n F.Return to Main Menu")
+    choice = input("Please enter the option you would like to access: ")
+
+
+def graphMain():
+    choice = ""
+    graph = Graph(0)
+    while choice != "F":
+        pqMenu()
+        choice = input("Please enter the option you would like to access: ")
+        if choice == "A":
+            graph.addVertex()
+        elif choice == "B":
+            v1 = input("Please enter the first vertex you would like to add an edge to: ")
+            v2 = input("Please enter the second vertex you would like to add an edge to: ")
+            graph.addEdge(v1,v2)
+        elif choice == "C":
+            v = input("Please enter the vertex you would like to remove: ")
+            graph.removeVertex(v)
+        elif choice == "D":
+            v1 = input("Please enter the first vertex you would like to remove the edge of: ")
+            v2 = input("Please enter the second vertex you would like to remove the edge of: ")
+            graph.removeEdge(v1,v2)
+        elif choice == "E":
+            n = input("Please enter the degree of the vertices you would like displayed: ")
+            graph.displayGraph(n)
+        elif choice != "F":
+            print("Invalid option.")
+    print("You're returning to the Main Menu")
+
+def pqMenu():
+
+    print("Welcome to the Priority Queue Menu: "
+          "\n A. Add Student"
+          "\n B.Interview Student"
+          "\n C.Return to Main Menu")
+def pqMain():
+    choice = ""
+    pq = PriorityQueue()
+    while choice != "C":
+        pqMenu()
+        choice = input("Please enter the option you would like to access: ")
+        if choice == "A":
+            pq.addStudent()
+        elif choice == "B":
+            pq.interView()
+        elif choice != "C":
+            print("Invalid option.")
+    print("You're returning to the Main Menu")
 
 
 
 
+def main():
+    choice = 0
+    user_name = input("Please enter your name: ")
+    print()
+    print("Hello", user_name,", welcome to my fourth assignment!")
+    print()
+    while choice != 6:
+        displayMenu()
+        print("")
+        choice = input("Please enter the exersice you would like to access: ")
+        if choice.isdigit():
+            choice = int(choice)
+            if choice == 1:
+                nodeMain()
+            elif choice == 2:
+                string = input("Please enter a string to check: ")
+                print("It is ", isPalindrome(string), "that", string, "is a palindrome")
+            elif choice == 3:
+                pqMain()
+            elif choice == 4:
+                evaluate()
+            elif choice == 5:
+                graphMenu()
+            elif choice != 6:
+                print("Invalid choice")
+    print("\nYou left the project, Goodbye.")
 
 
 
+
+main()
 
 
 
