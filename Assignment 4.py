@@ -124,11 +124,14 @@ def isPalindrome(string):
         stack.push(char)
         queue.enqueue(char)
 # we place each character in both the queue and stack
-    while True:
-        char = queue.dequeue()
-        rev_char = stack.pop()
-        if char != rev_char:
+    while len(stack.value) > 0 and len(queue.value) > 0:
+        char_stack = stack.pop()
+        char_queue = queue.dequeue()
+
+        if char_stack != char_queue:
             return False
+
+    return True
 # we compare the dequeued and popped char
 # using the fifo and lifo rules we get a comparison between the reverse of the word and the word in the right way
 # this way we can tell is a word is a palindrome
@@ -346,7 +349,7 @@ def graphMenu():
           "\n D.Remove Edge"
           "\n E.Display vertices with a degree of X or more"
           "\n F.Return to Main Menu")
-    choice = input("Please enter the option you would like to access: ")
+
 
 
 def graphMain():
@@ -414,7 +417,7 @@ def main():
                 nodeMain()
             elif choice == 2:
                 string = input("Please enter a string to check: ")
-                print("It is ", isPalindrome(string), "that", string, "is a palindrome")
+                print("\nIt is", isPalindrome(string), "that", string, "is a Palindrome\n")
             elif choice == 3:
                 pqMain()
             elif choice == 4:
@@ -422,7 +425,7 @@ def main():
             elif choice == 5:
                 graphMenu()
             elif choice != 6:
-                print("Invalid choice")
+                print("\nInvalid choice")
     print("\nYou left the project, Goodbye.")
 
 
